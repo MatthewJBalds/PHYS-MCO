@@ -7,7 +7,7 @@ namespace P6 {
 		float mass = 0;
 		float damping = 0.9f;
 		float lifespan = 1.f;
-		float lifeRemaining = 0.f;
+		float lifespanLeft = 0.f;
 
 		MyVector Position;
 		MyVector Velocity;
@@ -27,7 +27,7 @@ namespace P6 {
 		MyVector accumulatedForce = MyVector(0, 0, 0);
 		void UpdatePosition(float time);
 		void UpdateVelocity(float time);
-		void UpdateLifeSpan(float time);
+		void UpdateLifespan(float time);
 
 	public:
 		void Update(float time);

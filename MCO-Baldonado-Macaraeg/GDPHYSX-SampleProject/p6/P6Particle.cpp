@@ -8,7 +8,7 @@ P6::PhysicsParticle::PhysicsParticle() {
 	this->Position = MyVector();
 	this->mass = 0;
 	this->lifespan = 1.f;
-	this->lifeRemaining = 0.f;
+	this->lifespanLeft = 0.f;
 }
 
 void P6::PhysicsParticle::AddForce(MyVector force) {
@@ -34,14 +34,14 @@ void P6::PhysicsParticle::UpdateVelocity(float time) {
 	this->Velocity = this->Velocity * powf(damping, time);
 }
 
-void P6::PhysicsParticle::UpdateLifeSpan(float time) {
+void P6::PhysicsParticle::UpdateLifespan(float time) {
 	this->lifespan -= time;
-	if (lifespan > 0) return;
+	if (lifespanLeft > 0) return;
 	this->Destroy();
 }
 
 void P6::PhysicsParticle::Update(float time) {
-	this->UpdateLifeSpan(time);
+	this->UpdateLifespan(time);
 	this->UpdatePosition(time);
 	this->UpdateVelocity(time);
 	this->ResetForce();

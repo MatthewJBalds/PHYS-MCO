@@ -1,35 +1,36 @@
 #include "MyCamera.h"
 
 MyCamera::MyCamera() {
-	this->cameraPos = glm::vec3(0.f, 0.f, 3.f);
+	
 }
 
 /* Camera Position */
 void MyCamera::createCameraPos() {
+	this->cameraPos = glm::vec3(0.f, 0.f, 3.f);
 	this->cameraPositionMatrix = glm::translate(glm::mat4(1.0f), this->cameraPos * -1.f);
 	this->WorldUp = glm::vec3(0, 1.f, 0);
 	this->Center = glm::vec3(0.f, 0.f, 0.f);
-	this->F = glm::vec3(this->Center - this->cameraPos);
-	this->F = glm::normalize(this->F);
-	this->R = glm::normalize(glm::cross(this->F, WorldUp));
-	this->U = glm::normalize(glm::cross(this->R, this->F));
+	this->Forward = glm::vec3(this->Center - this->cameraPos);
+	this->Forward = glm::normalize(this->Forward);
+	this->Right = glm::normalize(glm::cross(this->Forward, WorldUp));
+	this->Up = glm::normalize(glm::cross(this->Right, this->Forward));
 }
 
 /* Camera Orientation */
 void MyCamera::createCameraOrientation() {
 	this->cameraOrientation = glm::mat4(1.f);
 
-	this->cameraOrientation[0][0] = R.x;
-	this->cameraOrientation[1][0] = R.y;
-	this->cameraOrientation[2][0] = R.z;
+	this->cameraOrientation[0][0] = Right.x;
+	this->cameraOrientation[1][0] = Right.y;
+	this->cameraOrientation[2][0] = Right.z;
 
-	this->cameraOrientation[0][1] = U.x;
-	this->cameraOrientation[1][1] = U.y;
-	this->cameraOrientation[2][1] = U.z;
+	this->cameraOrientation[0][1] = Up.x;
+	this->cameraOrientation[1][1] = Up.y;
+	this->cameraOrientation[2][1] = Up.z;
 
-	this->cameraOrientation[0][2] = -F.x;
-	this->cameraOrientation[1][2] = -F.y;
-	this->cameraOrientation[2][2] = -F.z;
+	this->cameraOrientation[0][2] = -Forward.x;
+	this->cameraOrientation[1][2] = -Forward.y;
+	this->cameraOrientation[2][2] = -Forward.z;
 }
 
 /* Camera View */
@@ -37,8 +38,8 @@ void MyCamera::createCameraView() {
 	this->viewMatrix = cameraOrientation * cameraPositionMatrix;
 }
 
-/* Create Camera Proper */
-void MyCamera::createCamera() {
+/* Initialize Camera*/
+void MyCamera::initializeCamera() {
 	this->createProjection();
 	this->createCameraPos();
 	this->createCameraOrientation();

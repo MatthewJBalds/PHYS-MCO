@@ -1,6 +1,5 @@
 #include "OrthoCam.h"
 
-/* Constructor */
 OrthoCamera::OrthoCamera(float window_height, float window_width) : MyCamera() {
 	this->window_height = window_height;
 	this->window_width = window_width;
@@ -16,7 +15,7 @@ void OrthoCamera::createProjection() {
 		1000.f); //Z-Far
 }
 
-/* Ortho Set Projection */
+/* Ortho Projection */
 void OrthoCamera::setProjection(float left, float right, float bottom, float top) {
 	this->projectionMatrix = glm::ortho(-left, //Left
 		right, //Right
@@ -32,7 +31,7 @@ void OrthoCamera::performCamera(GLuint shaderProg, GLFWwindow* window) {
 	this->render(shaderProg);
 }
 
-/* Update Camera Pos */
+/* Update Camera Position */
 void OrthoCamera::updateCameraPos(GLFWwindow* window) {
 	float radius = 500.f;
 	Input* input = static_cast<Input*>(glfwGetWindowUserPointer(window));
@@ -56,15 +55,15 @@ void OrthoCamera::updateCameraPos(GLFWwindow* window) {
 	this->cameraPos.z = radius * std::cos(angleY) * std::cos(angleX);
 
 	this->cameraPositionMatrix = glm::translate(glm::mat4(1.0f), this->cameraPos * -1.f);
-	this->F = glm::normalize(this->Center - this->cameraPos);
+	this->Forward = glm::normalize(this->Center - this->cameraPos);
 }
 
 /* Update View Matrix */
 void OrthoCamera::updateViewMatrix() {
-	this->viewMatrix = glm::lookAt(this->cameraPos, this->Center, this->U);
+	this->viewMatrix = glm::lookAt(this->cameraPos, this->Center, this->Up);
 }
 
-/* Update for both Camera Pos and View Matrix */
+/* Update both Camera Position and View Matrix */
 void OrthoCamera::update(GLFWwindow* window) {
 	this->updateCameraPos(window);
 	this->updateViewMatrix();

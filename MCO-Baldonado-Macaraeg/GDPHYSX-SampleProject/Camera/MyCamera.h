@@ -13,9 +13,9 @@ protected:
 	glm::mat4 cameraPositionMatrix;
 	glm::vec3 WorldUp;
 	glm::vec3 Center;
-	glm::vec3 F;
-	glm::vec3 R;
-	glm::vec3 U;
+	glm::vec3 Forward;
+	glm::vec3 Right;
+	glm::vec3 Up;
 	glm::mat4 cameraOrientation;
 	glm::mat4 viewMatrix;
 	float window_height;
@@ -35,7 +35,7 @@ private:
 	void createCameraView();
 
 public:
-	void createCamera();
+	void initializeCamera();
 	void render(GLuint shaderProg);
 	virtual void perform(GLuint shaderProg);
 

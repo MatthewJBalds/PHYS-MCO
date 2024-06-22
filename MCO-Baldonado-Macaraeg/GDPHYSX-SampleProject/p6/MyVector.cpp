@@ -34,10 +34,10 @@ P6::MyVector P6::MyVector::vectorProduct(const MyVector v) {
 	return MyVector(((this->y * v.z) - (this->z * v.y)), ((this->x * v.z) - (this->z * v.x)), ((this->x * v.y) - (this->y * v.x)));
 }
 
-float P6::MyVector::magnitude() {
+float P6::MyVector::Magnitude() {
 	return sqrt(this->x * this->x + this->y * this->y + this->z * this->z);
 }
 
 P6::MyVector P6::MyVector::normalize() {
-	return MyVector(this->x / magnitude(), this->y / magnitude(), this->z / magnitude());
+	return MyVector(this->x / Magnitude(), this->y / Magnitude(), this->z / Magnitude());
 }

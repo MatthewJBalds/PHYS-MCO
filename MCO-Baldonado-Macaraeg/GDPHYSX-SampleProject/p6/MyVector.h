@@ -13,14 +13,23 @@ namespace P6 {
 
 	public:
 		void operator+= (const MyVector v);
-		MyVector operator+ (const MyVector v); // Addition
-		MyVector operator- (const MyVector v); // Subtraction
-		MyVector operator/ (const float v); // Division
-		MyVector operator* (const MyVector v); // Component Product
-		MyVector operator* (const float scalarMul); // Scalar Multiplication
-		float dotProduct(const MyVector v); // Dot Product
-		MyVector vectorProduct(const MyVector v); // Vector Product
-		float magnitude(); // Magnitude
-		MyVector normalize(); // Direction
+
+		MyVector operator+ (const MyVector v);
+		
+		MyVector operator- (const MyVector v);
+	
+		MyVector operator/ (const float v);
+		
+		MyVector operator* (const MyVector v);
+	
+		MyVector operator* (const float scalarMul); 
+		
+		float dotProduct(const MyVector v);
+	
+		MyVector vectorProduct(const MyVector v);
+		
+		float Magnitude();
+		
+		MyVector normalize(); 
 	};
 }

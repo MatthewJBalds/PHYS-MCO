@@ -13,7 +13,8 @@ namespace P6 {
 		void Update(float time);
 
 	private:
-		void UpdateParticleList();
 		GravityForce Gravity = GravityForce(MyVector(0, -9.8, 0));
+		void UpdateParticleList();
+		
 	};
 }

@@ -21,6 +21,8 @@
 #include "P6/DragForce.h"
 
 #define PI 3.14159
+
+
 using namespace std::chrono_literals;
 constexpr std::chrono::nanoseconds timestep(16ms);
 
@@ -42,7 +44,7 @@ int main(void) {
     if (!glfwInit())
         return -1;
 
-    window = glfwCreateWindow(800, 800, "Phase1: Baldonado - Macaraeg", NULL, NULL);
+    window = glfwCreateWindow(800, 800, "Group 5 Phase 1: Baldonado - Macaraeg", NULL, NULL);
 
     if (!window) {
         glfwTerminate();
@@ -58,6 +60,7 @@ int main(void) {
     MyCamera* cameraPerspective = new PerspectiveCamera(window_height, window_width);
     PerspectiveCamera* pCameraPerspective = (PerspectiveCamera*)cameraPerspective;
 
+    
     glfwMakeContextCurrent(window);
     gladLoadGL();
 
@@ -67,18 +70,18 @@ int main(void) {
 
     Shader shader(v, f);
 
-    Model3D object("3D/white.jpg", "3D/sphere.obj");
-    object.setShaders(shader.getShaderProg());
-    object.createModel();
+    cameraOrtho->initializeCamera();
+    cameraPerspective->initializeCamera();
 
-    cameraOrtho->createCamera();
-    cameraPerspective->createCamera();
+    Model3D sphere("3D/white.jpg", "3D/sphere.obj");
+    sphere.setShaders(shader.getShaderProg());
+    sphere.createModel();
 
     P6::PhysicsWorld pWorld = P6::PhysicsWorld();
     std::list<RenderParticle*> RenderParticles;
 
     int sparkAmount = 0;
-    std::cout << "Enter Spark Amount: ";
+    std::cout << "Spark Amount: ";
     std::cin >> sparkAmount;
 
     const float spawnInterval = 100.f;
@@ -137,16 +140,16 @@ int main(void) {
             newParticle->Position = P6::MyVector(0, -380, 0);
             newParticle->mass = 0.01f;
             newParticle->lifespan = dist(rd);
-            newParticle->lifeRemaining = newParticle->lifespan;
+            newParticle->lifespanLeft = newParticle->lifespan;
 
             float angle = distAngle(rd) * (PI / 180.f);
-            float angle_2 = distAngle_2(rd) * (PI / 180.f);
+            float angle2 = distAngle_2(rd) * (PI / 180.f);
             float velocity = distForce(rd);
 
             P6::MyVector randomForce = P6::MyVector(
-                velocity * std::cosf(angle) * std::cosf(angle_2),
+                velocity * std::cosf(angle) * std::cosf(angle2),
                 velocity * std::sinf(angle),
-                velocity * std::cosf(angle) * std::sinf(angle_2));
+                velocity * std::cosf(angle) * std::sinf(angle2));
             newParticle->AddForce(randomForce);
             pWorld.AddParticle(newParticle);
 
@@ -155,7 +158,7 @@ int main(void) {
             int randomRadius = 2 + (std::rand() % 10);
             P6::MyVector randomScale = P6::MyVector(randomRadius, randomRadius, randomRadius);
 
-            RenderParticle* rp = new RenderParticle(newParticle, &object, randomColor, randomScale);
+            RenderParticle* rp = new RenderParticle(newParticle, &sphere, randomColor, randomScale);
 
             RenderParticles.push_back(rp);
             particlesSpawned++;

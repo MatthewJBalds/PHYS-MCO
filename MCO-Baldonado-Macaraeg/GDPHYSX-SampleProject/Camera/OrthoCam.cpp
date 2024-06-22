@@ -37,18 +37,18 @@ void OrthoCamera::updateCameraPos(GLFWwindow* window) {
 	Input* input = static_cast<Input*>(glfwGetWindowUserPointer(window));
 
 	if (input->getUp()) {
-		angleY += 0.001f;
+		angleY += 0.1f;
 		if (angleY > glm::radians(89.0f)) angleY = glm::radians(89.0f);
 	}
 	if (input->getDown()) {
-		angleY -= 0.001f;
+		angleY -= 0.1f;
 		if (angleY < glm::radians(-89.0f)) angleY = glm::radians(-89.0f);
 	}
 	if (input->getLeft()) {
-		angleX += 0.001f;
+		angleX += 0.1f;
 	}
 	if (input->getRight())
-		angleX -= 0.001f;
+		angleX -= 0.1f;
 
 	this->cameraPos.x = radius * std::sin(angleX) * std::cos(angleY);
 	this->cameraPos.y = radius * std::sin(angleY);

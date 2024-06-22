@@ -1,10 +1,5 @@
-﻿  GDPHYSX-SampleProject.cpp
-C:\Users\Matthew Jayd\PHYS-MCO\MCO-Baldonado-Macaraeg\GDPHYSX-SampleProject\P6\PhysicsWorld.h(17,52): warning C4305: 'argument': truncation from 'double' to 'const float'
-  (compiling source file 'GDPHYSX-SampleProject.cpp')
-  
-C:\Users\Matthew Jayd\PHYS-MCO\MCO-Baldonado-Macaraeg\GDPHYSX-SampleProject\GDPHYSX-SampleProject.cpp(142,25): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Matthew Jayd\PHYS-MCO\MCO-Baldonado-Macaraeg\GDPHYSX-SampleProject\GDPHYSX-SampleProject.cpp(143,27): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-C:\Users\Matthew Jayd\PHYS-MCO\MCO-Baldonado-Macaraeg\GDPHYSX-SampleProject\GDPHYSX-SampleProject.cpp(156,81): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\Matthew Jayd\PHYS-MCO\MCO-Baldonado-Macaraeg\GDPHYSX-SampleProject\GDPHYSX-SampleProject.cpp(156,67): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
-C:\Users\Matthew Jayd\PHYS-MCO\MCO-Baldonado-Macaraeg\GDPHYSX-SampleProject\GDPHYSX-SampleProject.cpp(156,53): warning C4244: 'argument': conversion from 'int' to 'const float', possible loss of data
+﻿  OrthoCam.cpp
+  PerspectiveCam.cpp
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   GRAP1_Projects.vcxproj -> C:\Users\Matthew Jayd\PHYS-MCO\MCO-Baldonado-Macaraeg\GDPHYSX-SampleProject\x64\Debug\GDPHYSX-SampleProject.exe
